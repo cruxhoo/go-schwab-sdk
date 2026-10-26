@@ -4,11 +4,12 @@ import (
 	"encoding/base64"
 	"errors"
 	"fmt"
-	"go-schwab-client/utils"
 	"log/slog"
 	"net/http"
 	"net/url"
 	"strings"
+
+	"github.com/cruxhoo/go-schwab-sdk/utils"
 )
 
 type AccessToken struct {

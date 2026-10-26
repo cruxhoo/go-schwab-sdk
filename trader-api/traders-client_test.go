@@ -5,8 +5,6 @@ import (
 	"encoding/json"
 	"errors"
 	"fmt"
-	authapi "go-schwab-client/auth-api"
-	"go-schwab-client/utils"
 	"io"
 	"math/rand"
 	"net/http"
@@ -14,6 +12,9 @@ import (
 	"strings"
 	"testing"
 	"uuid"
+
+	authapi "github.com/cruxhoo/go-schwab-sdk/auth-api"
+	"github.com/cruxhoo/go-schwab-sdk/utils"
 
 	"github.com/google/go-cmp/cmp"
 )

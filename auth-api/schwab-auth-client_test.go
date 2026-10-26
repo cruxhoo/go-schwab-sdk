@@ -3,12 +3,13 @@ package auth_api
 import (
 	"encoding/json"
 	"errors"
-	"go-schwab-client/utils"
 	"io"
 	"net/http"
 	"strings"
 	"testing"
 	"uuid"
+
+	"github.com/cruxhoo/go-schwab-sdk/utils"
 
 	"github.com/google/go-cmp/cmp"
 )

@@ -2,10 +2,11 @@ package trader_api
 
 import (
 	"fmt"
-	authapi "go-schwab-client/auth-api"
-	"go-schwab-client/utils"
 	"log/slog"
 	"net/http"
+
+	authapi "github.com/cruxhoo/go-schwab-sdk/auth-api"
+	"github.com/cruxhoo/go-schwab-sdk/utils"
 )
 
 const TraderApi = "https://api.schwabapi.com/trader/v1"

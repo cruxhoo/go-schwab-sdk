@@ -1,6 +1,6 @@
-# go-schwab-client
+# go-schwab-sdk
 
-A lightweight Go client for the [Charles Schwab API](https://developer.schwab.com/), covering OAuth authentication and trader (accounts/orders) endpoints.
+A lightweight Go SDK for the [Charles Schwab API](https://developer.schwab.com/), covering OAuth authentication and trader (accounts/orders) endpoints.
 
 ## Requirements
 
@@ -31,7 +31,7 @@ package main
 import (
 	"net/http"
 
-	authapi "go-schwab-client/auth-api"
+	authapi "github.com/cruxhoo/go-schwab-sdk/auth-api"
 )
 
 func main() {
@@ -79,8 +79,8 @@ Construct a `TraderClient` with a valid `AccessToken` and an `HttpClient`:
 import (
 	"net/http"
 
-	authapi "go-schwab-client/auth-api"
-	traderapi "go-schwab-client/trader-api"
+    authapi "github.com/cruxhoo/go-schwab-sdk/auth-api"
+	traderapi "github.com/cruxhoo/go-schwab-sdk/trader-api"
 )
 
 trader := traderapi.NewTraderClient(*token, &http.Client{})
