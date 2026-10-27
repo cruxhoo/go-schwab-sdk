@@ -80,10 +80,10 @@ import (
 	"net/http"
 
     authapi "github.com/cruxhoo/go-schwab-sdk/auth-api"
-	traderapi "github.com/cruxhoo/go-schwab-sdk/trader-api"
+	accountapi "github.com/cruxhoo/go-schwab-sdk/trader-api"
 )
 
-trader := traderapi.NewTraderClient(*token, &http.Client{})
+trader := accountapi.NewTraderClient(*token, &http.Client{})
 trader.UpdateToken(*refreshed) // swap in a refreshed token when needed
 ```
 

@@ -1,4 +1,6 @@
-package trader_api
+package accounts_api
+
+import "time"
 
 type ErrorResponse struct {
 	Message string   `json:"message"`
@@ -255,4 +257,106 @@ type UserPreference struct {
 	Accounts     []UserPreferenceAccount `json:"accounts"`
 	StreamerInfo []StreamerInfo          `json:"streamerInfo"`
 	Offers       []Offer                 `json:"offers"`
+}
+
+type OrderPreviewOrderBalance struct {
+	OrderValue             int `json:"orderValue"`
+	ProjectedAvailableFund int `json:"projectedAvailableFund"`
+	ProjectedBuyingPower   int `json:"projectedBuyingPower"`
+	ProjectedCommission    int `json:"projectedCommission"`
+}
+
+type OrderPreviewOrderLeg struct {
+	AskPrice            int    `json:"askPrice"`
+	BidPrice            int    `json:"bidPrice"`
+	LastPrice           int    `json:"lastPrice"`
+	MarkPrice           int    `json:"markPrice"`
+	ProjectedCommission int    `json:"projectedCommission"`
+	Quantity            int    `json:"quantity"`
+	FinalSymbol         string `json:"finalSymbol"`
+	LegId               int    `json:"legId"`
+	AssetType           string `json:"assetType"`
+	Instruction         string `json:"instruction"`
+}
+
+type OrderPreviewOrderStrategy struct {
+	AccountNumber          string                    `json:"accountNumber"`
+	AdvancedOrderType      string                    `json:"advancedOrderType"`
+	CloseTime              time.Time                 `json:"closeTime"`
+	EnteredTime            time.Time                 `json:"enteredTime"`
+	OrderBalance           *OrderPreviewOrderBalance `json:"orderBalance"`
+	OrderStrategyType      string                    `json:"orderStrategyType"`
+	OrderVersion           int                       `json:"orderVersion"`
+	Session                string                    `json:"session"`
+	Status                 string                    `json:"status"`
+	AllOrNone              bool                      `json:"allOrNone"`
+	Discretionary          bool                      `json:"discretionary"`
+	Duration               string                    `json:"duration"`
+	FilledQuantity         int                       `json:"filledQuantity"`
+	OrderType              string                    `json:"orderType"`
+	OrderValue             int                       `json:"orderValue"`
+	Price                  int                       `json:"price"`
+	Quantity               int                       `json:"quantity"`
+	RemainingQuantity      int                       `json:"remainingQuantity"`
+	SellNonMarginableFirst bool                      `json:"sellNonMarginableFirst"`
+	SettlementInstruction  string                    `json:"settlementInstruction"`
+	Strategy               string                    `json:"strategy"`
+	AmountIndicator        string                    `json:"amountIndicator"`
+	OrderLegs              []OrderPreviewOrderLeg    `json:"orderLegs"`
+}
+
+type OrderValidationDetail struct {
+	ValidationRuleName string `json:"validationRuleName"`
+	Message            string `json:"message"`
+	ActivityMessage    string `json:"activityMessage"`
+	OriginalSeverity   string `json:"originalSeverity"`
+	OverrideName       string `json:"overrideName"`
+	OverrideSeverity   string `json:"overrideSeverity"`
+}
+
+type OrderValidationResult struct {
+	Alerts  []OrderValidationDetail `json:"alerts"`
+	Accepts []OrderValidationDetail `json:"accepts"`
+	Rejects []OrderValidationDetail `json:"rejects"`
+	Reviews []OrderValidationDetail `json:"reviews"`
+	Warns   []OrderValidationDetail `json:"warns"`
+}
+
+type CommissionValue struct {
+	Value int    `json:"value"`
+	Type  string `json:"type"`
+}
+
+type CommissionLeg struct {
+	CommissionValues []CommissionValue `json:"commissionValues"`
+}
+
+type Commission struct {
+	CommissionLegs []CommissionLeg `json:"commissionLegs"`
+}
+
+type FeeValue struct {
+	Value int    `json:"value"`
+	Type  string `json:"type"`
+}
+
+type FeeLeg struct {
+	FeeValues []FeeValue `json:"feeValues"`
+}
+
+type Fee struct {
+	FeeLegs []FeeLeg `json:"feeLegs"`
+}
+
+type CommissionAndFee struct {
+	Commission     Commission `json:"commission"`
+	Fee            Fee        `json:"fee"`
+	TrueCommission Commission `json:"trueCommission"`
+}
+
+type OrderPreview struct {
+	OrderId               int                        `json:"orderId"`
+	OrderStrategy         *OrderPreviewOrderStrategy `json:"orderStrategy"`
+	OrderValidationResult *OrderValidationResult     `json:"orderValidationResult"`
+	CommissionAndFee      *CommissionAndFee          `json:"commissionAndFee"`
 }
